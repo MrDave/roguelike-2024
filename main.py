@@ -5,6 +5,9 @@ def main():
     screen_width = 80
     screen_height = 50
 
+    player_x = int(screen_width / 2)
+    player_y = int(screen_height / 2)
+
     tileset = tcod.tileset.load_tilesheet(
         "assets/dejavu10x10_gs_tc.png",
         32,
@@ -22,7 +25,11 @@ def main():
         root_console = tcod.Console(screen_width, screen_height, order="F")
 
         while True:
-            root_console.print(x=1, y=1, string="@")
+            root_console.print(
+                x=player_x,
+                y=player_y,
+                string="@"
+            )
             context.present(root_console)
 
             for event in tcod.event.wait():
