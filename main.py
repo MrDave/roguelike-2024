@@ -1,5 +1,8 @@
 import tcod
 
+from actions import EscapeAction, MovementAction
+from input_handlers import EventHandler
+
 
 def main():
     screen_width = 80
@@ -14,6 +17,8 @@ def main():
         8,
         tcod.tileset.CHARMAP_TCOD
     )
+
+    event_handler = EventHandler()
 
     with tcod.context.new_terminal(
         columns=screen_width,
@@ -33,7 +38,16 @@ def main():
             context.present(root_console)
 
             for event in tcod.event.wait():
-                if event.type == "QUIT":
+                action = event_handler.dispatch(event)
+
+                if action is None:
+                    continue
+
+                if isinstance(action, MovementAction):
+                    player_x += action.dx
+                    player_y += action.dy
+
+                elif isinstance(action, EscapeAction):
                     raise SystemExit()
 
 
