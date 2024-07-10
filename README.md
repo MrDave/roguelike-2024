@@ -1,5 +1,5 @@
 # Roguelike 2024 
-
+![Jam Logo](https://imgur.com/GEyBFMC.png)
 ## Installing
 Python should already be installed. The game is written with Python3.12. You're free to try it with other versions, but YMMW.
 Clone the repo / download code
